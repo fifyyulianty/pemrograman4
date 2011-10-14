@@ -18,13 +18,15 @@ public class PerpustakaanMain{
 		fis = new FileInputStream(file);
 		bis = new BufferedInputStream(fis);
 		dis = new DataInputStream(bis);
-		
+		int count=0;
 		while(dis.available() !=0){
+			count ++;
 			//memecah text perbaris menjadi beberapa kolom sesuai dengan pemisah koma
 			String line = dis.readLine();
 			String[] data = line.split(", ");
 			
 			Perpustakaan p= new Perpustakaan();
+			p.setJumlah(count);
 			p.setId(data[0]);
 			p.setPeminjam(data[1]);
 			p.setJudul(data[2]);
@@ -36,6 +38,7 @@ public class PerpustakaanMain{
 				System.out.println("Exception : " + ex.getMessage());
 			}
 			for (Perpustakaan perpus : listPerpustakaan) {
+				System.out.println(perpus.getJumlah());
 				System.out.println("========================");
 				System.out.println("ID : " + perpus.getId());
 				System.out.println("Penyewa : " + perpus.getPeminjam());
